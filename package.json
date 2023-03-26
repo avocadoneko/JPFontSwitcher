@@ -1,0 +1,26 @@
+{
+  "name": "jpfontswitcher",
+  "version": "1.0.0",
+  "description": "A Figma plugin to easily switch between Japanese fonts.",
+  "main": "code.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "keywords": [
+    "figma",
+    "plugin",
+    "font",
+    "japanese",
+    "switcher"
+  ],
+  "author": "avocadoneko",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.21.3",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.2",
+    "webpack": "^5.76.3",
+    "webpack-cli": "^5.0.1"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "JP Font Switcher",
+  "id": "1221155702247525446",
+  "api": "1.0.0",
+  "main": "bundle.js",
+  "capabilities": [],
+  "enableProposedApi": false,
+  "editorType": [
+    "figma"
+  ],
+  "ui": "ui.html"
+}

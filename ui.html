@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日本語フォント一覧</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+      margin: 0;
+      font-size: 14px;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 16px;
+      margin: 12px;
+    }
+    .list {
+      overflow-y: auto;
+      overflow-x: hidden;
+      max-height: calc(100% - 40px);
+    }
+    .item {
+      display: flex;
+      flex-direction: column;
+      padding: 8px 12px;
+      border-bottom: 1px solid #dddddd;
+      background-color: #f7f7f7;
+    }
+    .font-family {
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+    }
+    .font-family span {
+      margin-right: 8px;
+      min-width: 220px;
+      font-weight: bold;
+    }
+    .styles {
+      display: flex;
+      flex-direction: column;
+    }
+    .font-style {
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      padding: 4px 0;
+    }
+    .font-style:hover {
+      background-color: #e0e0e0;
+    }
+    .preview {
+      font-size: 16px;
+      font-weight: lighter;
+      margin-left: 8px;
+      margin-right: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>日本語のフォント一覧</h1>
+  <div class="list" id="font-list"></div>
+  <script>
+    const fontList = document.getElementById('font-list');
+
+    function createFontItem(font) {
+      const item = document.createElement('div');
+      item.className = 'item';
+
+      const fontFamily = document.createElement('div');
+      fontFamily.className = 'font-family';
+
+      const fontFamilyName = document.createElement('span');
+      fontFamilyName.textContent = font.displayName;
+      fontFamily.appendChild(fontFamilyName);
+
+      const preview = document.createElement('span');
+      preview.className = 'preview';
+      preview.style.fontFamily = font.fontName.family;
+      preview.textContent = '文字もじモジ';
+      fontFamily.appendChild(preview);
+
+      item.appendChild(fontFamily);
+
+      const styles = document.createElement('div');
+      styles.className = 'styles';
+      font.styles.forEach((style) => {
+        const fontStyle = document.createElement('div');
+        fontStyle.className = 'font-style';
+        fontStyle.textContent = style;
+        fontStyle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          parent.postMessage({pluginMessage: {type: 'apply-font', font: {fontName: {family: font.fontName.family, style}}}}, '*');
+        });
+        styles.appendChild(fontStyle);
+      });
+      item.appendChild(styles);
+
+      return item;
+    }
+
+    onmessage = async (event) => {
+      if (event.data.pluginMessage.type === 'display-fonts') {
+        const fonts = event.data.pluginMessage.fonts;
+        fontList.innerHTML = '';
+        fonts.forEach((font) => {
+          const item = createFontItem(font);
+          fontList.appendChild(item);
+        });
+      }
+    };
+
+    parent.postMessage({pluginMessage: {type: 'load-fonts'}}, '*');
+  </script>
+
+</body>
+</html>
