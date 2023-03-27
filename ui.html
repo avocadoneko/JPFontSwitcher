@@ -15,10 +15,22 @@
       font-size: 16px;
       margin: 12px;
     }
+    .search {
+      display: flex;
+      justify-content: center;
+      margin: 8px;
+    }
+    .search input {
+      width: 100%;
+      padding: 6px;
+      font-size: 14px;
+      border: 1px solid #dddddd;
+      border-radius: 4px;
+    }
     .list {
       overflow-y: auto;
       overflow-x: hidden;
-      max-height: calc(100% - 40px);
+      max-height: calc(100% - 100px);
     }
     .item {
       display: flex;
@@ -61,9 +73,13 @@
 </head>
 <body>
   <h1>日本語のフォント一覧</h1>
+  <div class="search">
+    <input type="text" id="search-input" placeholder="フォントを検索">
+  </div>
   <div class="list" id="font-list"></div>
   <script>
     const fontList = document.getElementById('font-list');
+    const searchInput = document.getElementById('search-input');
 
     function createFontItem(font) {
       const item = document.createElement('div');
@@ -101,14 +117,34 @@
       return item;
     }
 
+    function displayFonts(filteredFonts) {
+      fontList.innerHTML = '';
+      filteredFonts.forEach((font) => {
+        const item = createFontItem(font);
+        fontList.appendChild(item);
+      });
+    }
+
+    function filterFonts(query, fonts) {
+      if (query === '') {
+        return fonts;
+      }
+
+      return fonts.filter(font => font.displayName.includes(query));
+    }
+
+    let allFonts = [];
+
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value;
+      const filteredFonts = filterFonts(query, allFonts);
+      displayFonts(filteredFonts);
+    });
+
     onmessage = async (event) => {
       if (event.data.pluginMessage.type === 'display-fonts') {
-        const fonts = event.data.pluginMessage.fonts;
-        fontList.innerHTML = '';
-        fonts.forEach((font) => {
-          const item = createFontItem(font);
-          fontList.appendChild(item);
-        });
+        allFonts = event.data.pluginMessage.fonts;
+        displayFonts(allFonts);
       }
     };
 
