@@ -1,9 +1,9 @@
 # JP Font Switcher
 ![Node.js Version](https://img.shields.io/badge/node-%3E%3D12.0.0-brightgreen) ![Follow](https://img.shields.io/twitter/follow/avocadoneko?style=social)
 
-JPFontSwitcherは、Figma上で日本語フォントを簡単に切り替えることができるプラグインです。
+JP Font Switcherは、Figma上で日本語フォントを簡単に切り替えることができるプラグインです。
 
-![JPFontSwitcher Demo](./assets/demo.gif)
+![JP Font Switcher Demo](./assets/demo.gif)
 
 
 ## 機能
@@ -21,13 +21,13 @@ JPFontSwitcherは、Figma上で日本語フォントを簡単に切り替える�
 ## 使い方
 
 1. Figmaでテキストオブジェクトを選択
-2. ブラグインメニューから、`JPFontSwitcher`を選択
+2. ブラグインメニューから、`JP Font Switcher`を選択
 3. プラグインのウィンドウで、任意のフォントのスタイルをクリック
 
 ---
 
 ## 特定のローカルのフォントが表示されないとき
-JPFontSwitcherでは、現在使用可能な日本語フォントをリストアップしていますが、ユーザーのローカル環境にインストールされているフォントは自動的に表示されません。これは、プラグインがFigmaが認識できるフォントリストに基づいて動作しており、ローカルにインストールされたフォントはこのリストに含まれていないためです。
+JP Font Switcherでは、現在使用可能な日本語フォントをリストアップしていますが、ユーザーのローカル環境にインストールされているフォントは自動的に表示されません。これは、プラグインがFigmaが認識できるフォントリストに基づいて動作しており、ローカルにインストールされたフォントはこのリストに含まれていないためです。
 ローカル環境にインストールされているフォントをプラグインに表示させるには、以下の手順を実行してください。
 
 1. プロジェクトディレクトリ直下にある`fontList.js`に追加したいフォントを以下のフォーマットで追加
@@ -57,7 +57,7 @@ npm run build
 
 ## 開発者
 
-JPFontSwitcherは、[@avocadoneko](https://github.com/avocadoneko)によって開発されました。ご質問やフィードバックがある場合は、GitHubの[Issues](https://github.com/avocadoneko/JPFontSwitcher/issues)にてお気軽にお問い合わせください。
+JP Font Switcherは、[@avocadoneko](https://github.com/avocadoneko)によって開発されました。ご質問やフィードバックがある場合は、GitHubの[Issues](https://github.com/avocadoneko/JPFontSwitcher/issues)にてお気軽にお問い合わせください。
 
 ## Special Thanks
 
