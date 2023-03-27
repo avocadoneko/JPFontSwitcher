@@ -69,6 +69,21 @@
       margin-left: 8px;
       margin-right: 16px;
     }
+    .error-popup {
+      display: none;
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgb(244, 67, 54, 0.9);
+      color: #ffffff;
+      padding: 12px;
+      border-radius: 4px;
+      text-align: center;
+      font-size: 14px;
+      width: 300px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    }
   </style>
 </head>
 <body>
@@ -77,9 +92,13 @@
     <input type="text" id="search-input" placeholder="フォントを検索">
   </div>
   <div class="list" id="font-list"></div>
+  <div class="error-popup" id="error-popup">
+    <span id="error-message">テキストオブジェクトを選択してください</span>
+  </div>
   <script>
     const fontList = document.getElementById('font-list');
     const searchInput = document.getElementById('search-input');
+    const errorPopup = document.getElementById('error-popup');
 
     function createFontItem(font) {
       const item = document.createElement('div');
@@ -133,6 +152,14 @@
       return fonts.filter(font => font.displayName.includes(query));
     }
 
+    function showErrorPopup(message) {
+      errorPopup.textContent = message;
+      errorPopup.style.display = 'block';
+      setTimeout(() => {
+        errorPopup.style.display = 'none';
+      }, 3000);
+    }
+
     let allFonts = [];
 
     searchInput.addEventListener('input', (e) => {
@@ -145,6 +172,8 @@
       if (event.data.pluginMessage.type === 'display-fonts') {
         allFonts = event.data.pluginMessage.fonts;
         displayFonts(allFonts);
+      } else if (event.data.pluginMessage.type === 'error') {
+        showErrorPopup(event.data.pluginMessage.message);
       }
     };
 

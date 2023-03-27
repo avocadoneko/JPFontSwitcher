@@ -53,12 +53,19 @@ figma.ui.onmessage = async (msg) => {
   } else if (msg.type === 'apply-font') {
     const nodes = figma.currentPage.selection;
     if (nodes.length > 0) {
-      await figma.loadFontAsync(msg.font.fontName);
-      nodes.forEach((node) => {
+      let textNodesSelected = false;
+      for (const node of nodes) {
         if ('fontName' in node) {
+          textNodesSelected = true;
+          await figma.loadFontAsync(msg.font.fontName);
           node.fontName = msg.font.fontName;
         }
-      });
+      }
+      if (!textNodesSelected) {
+        figma.ui.postMessage({type: 'error', message: 'テキストオブジェクトを選択してください'});
+      }
+    } else {
+      figma.ui.postMessage({type: 'error', message: 'テキストオブジェクトを選択してください'});
     }
   }
 };
