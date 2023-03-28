@@ -1,3 +1,6 @@
+![Cover](./assets/Cover.png)
+
+
 # JP Font Switcher
 ![Node.js Version](https://img.shields.io/badge/node-%3E%3D12.0.0-brightgreen) ![Follow](https://img.shields.io/twitter/follow/avocadoneko?style=social)
 
