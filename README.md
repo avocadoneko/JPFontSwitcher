@@ -16,7 +16,11 @@ JP Font Switcherは、Figma上で日本語フォントを簡単に切り替え�
 - フォントスタイルの選択と適用（複数テキスト同時適用可）
 
 ## インストール方法
+FigmaコミュニティのTry it outボタンからお試しください。
+[JP Font Switcher](https://www.figma.com/community/plugin/1222407847928087305)
 
+
+### 自分でフォントリストをカスタマイズしたい人向け
 1. このリポジトリをクローンまたはダウンロードして、ローカルに保存。
 2. Figmaで、右上のハンバーガーメニューを開き、`Plugins(プラグイン)`>`development(開発)`>`import plugin from manifest(マニュフェストからプラグインをインポート)`を選択
 3. ダウンロードしたディレクトリ内の`manifest.json`ファイルを選択して、プラグインをインストール
